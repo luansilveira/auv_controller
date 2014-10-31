@@ -38,12 +38,12 @@ void Controller::readPath(std::string path)
 }
 
 void Controller::createROSPublishers(){
-    pub_ = nh_.advertise<nav_msgs::Odometry>("/dataNavigator", 1000);
+    pub_ = nh_.advertise<nav_msgs::Odometry>(control_topic_, 1000);
 }
 
 void Controller::createROSSubscribers()
 {
-    sub_ = nh_.subscribe<nav_msgs::Odometry>("/uwsim/girona500_odom", 1000, &Controller::callback,this);
+    sub_ = nh_.subscribe<nav_msgs::Odometry>(odometry_topic_, 1000, &Controller::callback,this);
 }
 
 void Controller::callback(const nav_msgs::Odometry::ConstPtr& msg)

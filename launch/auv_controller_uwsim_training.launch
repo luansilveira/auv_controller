@@ -1,0 +1,11 @@
+<launch>
+
+    <node name="uwsim" pkg="uwsim" type="uwsim" args="--configfile scenes/canos.xml" required="true"/>
+
+    <node name="auv_controller" pkg="auv_controller" type="auv_controller" required="true">
+            <param name="path" type="string" value="$(find auv_controller)/path_trainning.txt" />
+    </node>
+
+    <node name="rosbag" pkg="rosbag" type="record" args="--all" required="true"/>
+
+</launch>

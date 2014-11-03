@@ -7,7 +7,6 @@ project(auv_controller)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
-  tf2
   uwsim
 )
 
@@ -104,7 +103,7 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-add_executable(auv_controller src/auv_controller.cpp src/controller.cpp src/pid_controller.cpp)
+add_executable(auv_controller src/auv_controller_node.cpp src/auv_controller.cpp src/pid_controller.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes

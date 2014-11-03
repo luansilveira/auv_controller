@@ -10,6 +10,9 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <iostream>
+
+#include <tf/transform_listener.h>
 
 using namespace geometry_msgs;
 
@@ -21,17 +24,21 @@ public:
     void loadConfig();
     void createROSSubscribers();
     void createROSPublishers();
+    void createROSTimers();
 
     void readPath(std::string path);
 
     void setGoal(Point goal);
     void setPose(Point position, double yaw);
+    bool updatePose();
 
     bool goalReached();
 
     bool publish(Vector3 linear_velocity, double angular_velocity);
 
     void callback(const nav_msgs::Odometry::ConstPtr &msg);
+
+    void update(const ros::TimerEvent& event);
 
 
 private:
@@ -58,6 +65,9 @@ private:
     ros::NodeHandle nh_;
     ros::Publisher pub_;
     ros::Subscriber sub_;
+    ros::Timer timer_;
+
+    tf::TransformListener tf_listener_;
 
     std::string odometry_topic_;
     std::string control_topic_;

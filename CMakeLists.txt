@@ -7,6 +7,7 @@ project(auv_controller)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   tf
+  tf2
   uwsim
 )
 
